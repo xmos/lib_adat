@@ -1,7 +1,7 @@
 TARGET = XK-1
 APP_NAME =
 XCC_FLAGS = -O3 -g
-USED_MODULES = module_adat_tx
+USED_MODULES = lib_adat
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure

@@ -27,15 +27,12 @@ Firmware Overview
 The modules in this repo implement an ADAT transmitter and receiver in a
 core each. Separate cores are required to collect and supply data.
 
+Note, lib_adat was forked from https://github.com/xcore/sc_adat
+
 Known Issues
 ============
 
 * None
-
-Support
-=======
-
-At the discretion of the maintainer.
 
 Required software (dependencies)
 ================================

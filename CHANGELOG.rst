@@ -1,4 +1,4 @@
-sc_adat Change Log
+lib_adat Change Log
 ===================
 
 1.0.0
