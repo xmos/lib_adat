@@ -17,7 +17,7 @@ To Do
 =====
 
 * This software relies on the reference clock being 100 MHz, there is no out of the box version for non
-100 Mhz reference clocks.
+    100 Mhz reference clocks.
 
 * ADAT Tx for 256x master clock (i.e. 48kHz from 12.288MHz master clock) not yet implemented  
 
