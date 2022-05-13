@@ -1,8 +1,19 @@
+# XMOS tmp files
 *.o
 *.pca.xml
 *.so
 *.d
 *.decouple
+pca.xml
+*.rsp
+
+# XMOS bins
+*.xe 
+*/bin/*
+
+# Tmp riles
 *~
 *.swp
+
+# log files
 *.log
