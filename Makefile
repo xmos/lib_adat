@@ -1,8 +1,8 @@
 # This variable should contain a space separated list of all
 # the directories containing buildable applications (usually
 # prefixed with the app_ prefix)
-BUILD_SUBDIRS = app_adat_loopback app_adat_tx_example \
-	app_adat_rx_example app_adat_tx_direct_example
+BUILD_SUBDIRS = ./examples/app_adat_loopback ./examples/app_adat_tx_example \
+	./examples/app_adat_rx_example examples/app_adat_tx_direct_example
 
 # This variable should contain a space separated list of all
 # the directories containing buildable plugins (usually
