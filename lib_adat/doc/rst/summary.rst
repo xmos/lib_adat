@@ -18,11 +18,11 @@ Note that ADAT of eight channels at 48 Khz is identical to two channels at
 192 KHz - a single bit in the data stream differentiates it (but the bit
 rates, transmit, and receive code are identical).
 
-module_adat_tx
---------------
+Transmit
+--------
 
 This module can transmit S/PDIF signals at the following rates
-(assuming eight threads on a 400 MHz part):
+(assuming eight cores on a 400 MHz part):
 
 +---------------------------+-------------------------------+------------------------+
 | Functionality provided    | Resources required            | Status                 | 
@@ -34,7 +34,7 @@ This module can transmit S/PDIF signals at the following rates
 | 8        | up to 48 KHz   | 1-2        | 1       | 3.5K   | Implemented and tested |
 +----------+----------------+------------+---------+--------+------------------------+
 
-It requires a single thread to run the transmit code. The number of 1-bit
+It requires a single core to run the transmit code. The number of 1-bit
 ports depends on whether the master clock is already available on a one-bit
 port. If available, then only a single 1-bit port is required to output
 ADAT. If not, then two ports are required, one for the signal output, and
@@ -59,12 +59,11 @@ an issue since the same clocks can be used to drive the audio codecs.
 Typical applications for this module include iPod docks, digital microphones,
 digital mixing desks, USB audio, and AVB.
 
-module_adat_rx
---------------
-
+Receive
+-------
 
 This module can receive ADAT signals at the following rates
-(assuming 8 threads on a 400 MHz part (?)):
+(assuming 8 threads on a 400 MHz part):
 
 +---------------------------+-------------------------+------------------------+
 | Functionality provided    | Resources required      | Status                 | 
@@ -74,7 +73,7 @@ This module can receive ADAT signals at the following rates
 | 8        | up to 48 KHz   | 1          | 1.5-3.5 KB | Implemented and tested |
 +----------+----------------+------------+------------+------------------------+
 
-A single 50-MIPS thread is required. The receiver does not require any
+A single 50-MIPS core is required. The receiver does not require any
 external clock, but can only recover 44.1 and 48 KHz sample rates. The
 amount of memory depends on whether both 44.1 and 48 KHz are to be
 supported, or just a single frequency.

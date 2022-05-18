@@ -1,5 +1,5 @@
-Documentation
--------------
+lib_adat
+--------
 
 .. toctree::
 
