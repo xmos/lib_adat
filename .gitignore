@@ -10,6 +10,7 @@ pca.xml
 # XMOS bins
 *.xe 
 */bin/*
+**/_build/*
 
 # Tmp riles
 *~
