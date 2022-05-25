@@ -1,12 +1,11 @@
 ADAT Lightpipe Digital Audio Interface
 ######################################
 
-:scope: General Use
-
 Summary
 =======
 
 :Latest release: 1.0.0rc1
+:scope: General Use
 
 
 The modules in this repo implement an ADAT transmitter and receiver in a
