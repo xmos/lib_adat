@@ -15,6 +15,7 @@ pca.xml
 # Tmp riles
 *~
 *.swp
+*.DS_Store
 
 # log files
 *.log
