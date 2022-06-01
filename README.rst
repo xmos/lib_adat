@@ -1,7 +1,8 @@
 ADAT Lightpipe Digital Audio Interface
 ######################################
 
-:Latest release: 1.0.0
+:Latest release: 1.0.0rc0
+
 :scope: General Use
 
 Summary
