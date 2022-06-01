@@ -16,5 +16,8 @@ pca.xml
 *~
 *.swp
 
-# log files
+# Log files
 *.log
+
+# Others
+*.pdf
