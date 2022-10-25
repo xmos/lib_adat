@@ -7,6 +7,7 @@
 // 08 Jun 2010   forked from swc_usb/module_usb_audio_shared/src/adat_tx.xc tag ADAT_FORK
 
 #include <platform.h>
+#include <xs1.h>
 #include <xclib.h>
 #include <print.h>
 #include "adat_lookups.h"

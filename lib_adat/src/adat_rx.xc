@@ -6,7 +6,7 @@
 
 #ifndef ADAT_REF
 #define ADAT_REF 100
-#warning "Assuming 100 MHz reference clock"
+//#warning "Assuming 100 MHz reference clock"
 #endif
 
 #if (ADAT_REF == 100)
