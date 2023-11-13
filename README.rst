@@ -1,8 +1,9 @@
 ADAT Lightpipe Digital Audio Interface
 ######################################
 
-:latest release: 1.0.0rc0
-:description: ADAT Lightpipe Receiver and Transmitter
+:Latest release: 1.0.1
+
+
 :scope: General Use
 
 Summary
@@ -12,7 +13,6 @@ The modules in this repo implement an ADAT transmitter and receiver in a
 core each. Separate cores are required to collect and supply data.
 
 Note, lib_adat was forked from https://github.com/xcore/sc_adat
-
 
 Features
 --------
@@ -34,4 +34,8 @@ Known Issues
 
 * ADAT Tx for 256x master clock (i.e. 48kHz from 12.288MHz master clock) not yet implemented  
 
+Required software (dependencies)
+================================
+
+  * None
 
