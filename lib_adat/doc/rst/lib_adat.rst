@@ -1,7 +1,7 @@
 
 .. include:: ../../../README.rst
 
-ADAT software
+ADAT Software
 =============
 
 ADAT is a protocol to transmit audio
@@ -109,7 +109,7 @@ the module itself).
 API
 ---
 
-Compile time defines
+Compile Time Defines
 ~~~~~~~~~~~~~~~~~~~~
 
 *ADAT_REF*
@@ -208,7 +208,7 @@ interface, and a program that uses an intermediate thread to output to the
 port.
 
 
-Example of direct port code
+Example of Direct Port Code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The output port needs to be declared as a
@@ -244,7 +244,7 @@ should be set up:
 
 
 
-Example of ADAT with an extra thread
+Example of ADAT with an Extra Thread
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The output port needs to be declared as a

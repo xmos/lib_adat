@@ -1,8 +1,5 @@
-// Copyright (c) 2011, XMOS Ltd, All rights reserved
-// This software is freely distributable under a derivative of the
-// University of Illinois/NCSA Open Source License posted in
-// LICENSE.txt and at <http://github.xcore.com/>
-
+// Copyright 2011-2024 XMOS LIMITED.
+// This Software is subject to the terms of the XMOS Public Licence: Version 1.
 // GENERATED CODE - DO NOT EDIT
 // Comments are in the generator
 // Generated for devices with a reference clock of  99.937500 Mhz

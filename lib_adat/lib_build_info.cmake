@@ -1,5 +1,5 @@
 set(LIB_NAME lib_adat)
-set(LIB_VERSION 1.0.1)
+set(LIB_VERSION 1.1.0)
 set(LIB_INCLUDES api)
 set(LIB_DEPENDENT_MODULES "")
 set(LIB_COMPILER_FLAGS -O3)
