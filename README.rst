@@ -1,7 +1,7 @@
 ADAT Lightpipe Digital Audio Interface
 ######################################
 
-:Latest release: 1.0.1
+:Latest release: 1.1.0
 
 
 :scope: General Use
@@ -32,7 +32,7 @@ Known Issues
 
 * This software relies on the reference clock being 100 MHz, there is no out of the box version for non 100 Mhz reference clocks.
 
-* ADAT Tx for 256x master clock (i.e. 48kHz from 12.288MHz master clock) not yet implemented  
+* ADAT Tx for 256x master clock (i.e. 48kHz from 12.288MHz master clock) not yet implemented
 
 Required software (dependencies)
 ================================
