@@ -1,10 +1,10 @@
-lib_adat Change Log
-===================
+ADAT library change log
+=======================
 
-UNRELEASED
-----------
+1.1.0
+-----
 
-  * ADDED:     Support for XCommon CMake build system
+  * ADDED: Support for XCommon CMake build system
 
 1.0.1
 -----
