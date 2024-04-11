@@ -24,7 +24,7 @@ rates, transmit, and receive code are identical).
 Transmit
 --------
 
-This module can transmit S/PDIF signals at the following rates
+This module can transmit ADAT signals at the following rates
 (assuming eight cores on a 400 MHz part)
 
 +---------------------------+-------------------------------+------------------------+
