@@ -1,6 +1,6 @@
-TARGET = XK-1
+TARGET = xk-audio-316-mc.xn
 APP_NAME =
-XCC_FLAGS = -O3 -g
+XCC_FLAGS = -g -DADAT_TX_USE_SHARED_BUFF
 USED_MODULES = lib_adat
 
 #=============================================================================
