@@ -5,6 +5,7 @@ UNRELEASED
 ----------
 
   * CHANGED: example applications now run on xcore.ai hardware
+  * CHANGED: example applications build using XCommon CMake
 
 1.1.0
 -----
