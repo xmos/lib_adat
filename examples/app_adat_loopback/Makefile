@@ -22,7 +22,7 @@ XCC_FLAGS = -O3 -g -DADAT_TX_USE_SHARED_BUFF
 
 # The USED_MODULES variable lists other module used by the application. 
 
-USED_MODULES = lib_adat
+USED_MODULES = lib_adat lib_sw_pll
 
 #=============================================================================
 # The following part of the Makefile includes the common build infrastructure
