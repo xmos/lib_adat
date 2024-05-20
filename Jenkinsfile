@@ -26,6 +26,8 @@ pipeline {
       steps {
         println "Stage running on: ${env.NODE_NAME}"
 
+        sh "git clone -b v1.0.0 git@github.com:xmos/xcommon_cmake"
+
         sh "git clone -b v1.2.1 git@github.com:xmos/infr_scripts_py"
         sh "git clone -b v1.5.0 git@github.com:xmos/infr_apps"
 
@@ -60,12 +62,18 @@ pipeline {
     stage('Build examples') {
       steps {
         withTools(params.TOOLS_VERSION) {
-          dir("lib_adat/examples") {
-            script {
-              // Build all apps in the examples directory
-              def apps = sh(script: "ls -d app_*", returnStdout: true).trim()
-              for(String app : apps.split()) {
-                sh "xmake -C ${app}"
+          withEnv(["XMOS_CMAKE_PATH=${WORKSPACE}/xcommon_cmake"]) {
+            dir("lib_adat/examples") {
+              script {
+                // Build all apps in the examples directory
+                def apps = sh(script: "ls -d app_*", returnStdout: true).trim()
+                for(String app : apps.split()) {
+                  // First build using XCommon with xmake, then using XCommon CMake
+                  sh "xmake -C ${app}"
+                  sh "xmake -C ${app} clean"
+                  sh "cmake -S ${app} -B ${app}/build -G\"Unix Makefiles\""
+                  sh "xmake -C ${app}/build"
+                }
               }
             }
           }
