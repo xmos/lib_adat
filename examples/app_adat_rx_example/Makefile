@@ -1,4 +1,4 @@
-TARGET = XK-1
+TARGET = xk-audio-316-mc.xn
 APP_NAME =
 XCC_FLAGS = -O3 -g -D ADAT_REF=100
 USED_MODULES = lib_adat
