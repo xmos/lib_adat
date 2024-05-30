@@ -1,7 +1,8 @@
 ADAT Lightpipe Digital Audio Interface
 ######################################
 
-:Latest release: 1.2.0
+:Version: 1.2.0
+:Vendor: XMOS
 :scope: General Use
 
 Summary
@@ -32,8 +33,17 @@ Known Issues
 
 * ADAT Tx for 256x master clock (i.e. 48kHz from 12.288MHz master clock) not yet implemented
 
-Required software (dependencies)
+Required Software (dependencies)
 ================================
 
   * None
 
+Documentation
+=============
+
+You can find the documentation for this software in the /doc directory of the package.
+
+Support
+=======
+
+This package is supported by XMOS Ltd. Issues can be raised against the software at: http://www.xmos.com/support
