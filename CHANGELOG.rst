@@ -1,8 +1,8 @@
-ADAT library change log
-=======================
+lib_adat change log
+===================
 
-UNRELEASED
-----------
+1.2.0
+-----
 
   * CHANGED: example applications now run on xcore.ai hardware
   * CHANGED: example applications build using XCommon CMake
