@@ -8,13 +8,14 @@ pca.xml
 *.rsp
 
 # XMOS bins
-*.xe 
+*.xe
 */bin/*
-**/_build/*
+**/*build/*
 
 # Tmp riles
 *~
 *.swp
+*.swo
 
 # Log files
 *.log
