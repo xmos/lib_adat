@@ -38,17 +38,19 @@ void board_setup()
     sw_pll_fixed_clock(MCLK_FREQUENCY_48);
 }
 
-void collect_samples(chanend c) {
+void collect_samples(streaming chanend c)
+{
     unsigned expected_data = 0;
     unsigned count = 0;
 
     while(expected_data < MAX_GEN_VAL) {
         unsigned channels[8];
 
-        inuint(c);
+        c :> unsigned tmp;
 
-        for(int i = 0; i < 8; i++) {
-            channels[i] = inuint(c);
+        for(int i = 0; i < 8; i++)
+        {
+            c :> channels[i];
 
             expected_data += 1 << (count >> COUNT_SHIFT);
 
@@ -65,7 +67,8 @@ void collect_samples(chanend c) {
 
 unsigned samples[8];
 
-void generate_samples(chanend c_data) {
+void generate_samples(chanend c_data)
+{
     unsigned data = 0;
     int count = 0;
 
@@ -97,8 +100,10 @@ void generate_samples(chanend c_data) {
     outct(c_data, XS1_CT_END);
 }
 
-void receive_adat(chanend c) {
-    while(1) {
+void receive_adat(streaming chanend c)
+{
+    while(1)
+    {
         adatReceiver48000(p_adat_rx, c);
     }
 }
@@ -113,7 +118,8 @@ void transmit_adat(chanend c) {
 }
 
 int main(void) {
-    chan c_data_tx, c_data_rx;
+    chan c_data_tx;
+    streaming chan c_data_rx;
 
     par {
         on tile[0]: {

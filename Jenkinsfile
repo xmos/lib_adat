@@ -63,12 +63,9 @@ pipeline {
         withTools(params.TOOLS_VERSION) {
           dir("${REPO}/examples") {
             script {
-              // Build all apps in the examples directory
-              def apps = sh(script: "ls -d app_*", returnStdout: true).trim()
-              for(String app : apps.split()) {
-                // First build using XCommon CMake
-                sh "cmake -S ${app} -B ${app}/build -G\"Unix Makefiles\""
-                sh "xmake -C ${app}/build"
+                // Build all apps in the examples directory
+                sh "cmake  -B build -G\"Unix Makefiles\""
+                sh "xmake -C build"
               }
             }
           }
