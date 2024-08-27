@@ -8,7 +8,7 @@ version: 1.2.0
 documentation:
   exclude_patterns_path: doc/exclude_patterns.inc
   root_doc: doc/rst/lib_adat.rst
-  cognidox_part_number: XM-
+  cognidox_part_number: XM-015136-UG
   doxygen_projects:
     lib_adat:
       doxyfile_path: doc/Doxyfile.inc
@@ -21,4 +21,4 @@ documentation:
       pdf_filename: '{{lib_name}}_v{{version}}_readme'
       pdf_short: yes
 software:
-  cognidox_part_number: XM-
+  cognidox_part_number: XM-XM-015137-SM
