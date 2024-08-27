@@ -65,14 +65,13 @@ pipeline {
         withTools(params.TOOLS_VERSION) {
           dir("${REPO}/examples") {
             script {
-                // Build all apps in the examples directory
-                sh "cmake  -B build -G\"Unix Makefiles\""
-                sh "xmake -C build"
-              }
-            }
-          }
-        }
-      }
+              // Build all apps in the examples directory
+              sh "cmake  -B build -G\"Unix Makefiles\""
+              sh "xmake -C build"
+            } // script
+          } // dir
+        } //withTools
+      } // steps
     }  // Build examples
 
     stage('Documentation') {
@@ -87,12 +86,12 @@ pipeline {
               -v ${WORKSPACE}:/build \
               ghcr.io/xmos/xmosdoc:${params.XMOSDOC_VERSION} -v"""
         archiveArtifacts artifacts: 'doc/_build/**', allowEmptyArchive: false
-      }
-    }
-  }
+      } // steps
+    } // Documentation
+  } // stages
   post {
     cleanup {
       xcoreCleanSandbox()
-    }
-  }
-}
+    } // cleanuo
+  } // post
+} // pipeline
