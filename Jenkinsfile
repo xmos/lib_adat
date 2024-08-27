@@ -16,6 +16,11 @@ pipeline {
       defaultValue: '15.3.0',
       description: 'The XTC tools version'
     )
+    string(
+      name: 'XMOSDOC_VERSION',
+      defaultValue: 'v5.5.2',
+      description: 'The xmosdoc version'
+    )
   }
   environment {
     REPO = 'lib_adat'
@@ -72,30 +77,21 @@ pipeline {
         }
       }
     }  // Build examples
-    stage('Build documentation') {
-      steps {
-        // Clone infrastructure repositories and setup viewEnv environment as a
-        // workaround until this is converted to use xmosdoc
-        sh "git clone -b swapps14 git@github.com:xmos/infr_scripts_pl"
-        sh "git clone -b feature/update_xdoc_3_3_0 git@github0.xmos.com:xmos-int/xdoc_released"
-        withAgentEnv() {
-          sh """#!/bin/bash
-                cd ${WORKSPACE}/infr_scripts_pl/Build
-                source SetupEnv
-                cd ${WORKSPACE}
-                Build.pl VIEW=apps DOMAINS=xdoc_released
-                """
-        }
-        viewEnv {
-          withTools(params.TOOLS_VERSION) {
-            dir("lib_adat/lib_adat/doc") {
-              sh "xdoc xmospdf"
-              archiveArtifacts artifacts: "pdf/*.pdf", fingerprint: true, allowEmptyArchive: false
-            }
-          }
-        }
+
+    stage('Documentation') {
+      agent {
+        label 'docker'
       }
-    }  // Build documentation
+      steps {
+        println "Stage running on ${env.NODE_NAME}"
+        sh "docker pull ghcr.io/xmos/xmosdoc:${params.XMOSDOC_VERSION}"
+        sh """docker run -u "\$(id -u):\$(id -g)" \
+              --rm \
+              -v ${WORKSPACE}:/build \
+              ghcr.io/xmos/xmosdoc:${params.XMOSDOC_VERSION} -v"""
+        archiveArtifacts artifacts: 'doc/_build/**', allowEmptyArchive: false
+      }
+    }
   }
   post {
     cleanup {
