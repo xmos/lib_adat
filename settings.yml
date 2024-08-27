@@ -3,13 +3,12 @@
 lib_name: lib_adat
 project: '{{lib_name}}'
 title: '{{lib_name}}: ADAT Lightpipe'
-version: 1.0.1
+version: 1.2.0
 
 documentation:
   exclude_patterns_path: doc/exclude_patterns.inc
-  linkcheck_ignore_regex: ['.*github.com/xmos/lib_awe.*']
   root_doc: doc/rst/lib_adat.rst
-  cognidox_part_number: XM-015096-UG
+  cognidox_part_number: XM-
   doxygen_projects:
     lib_adat:
       doxyfile_path: doc/Doxyfile.inc
@@ -22,4 +21,4 @@ documentation:
       pdf_filename: '{{lib_name}}_v{{version}}_readme'
       pdf_short: yes
 software:
-  cognidox_part_number: XM-015095-SM
+  cognidox_part_number: XM-
