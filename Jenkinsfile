@@ -44,9 +44,6 @@ pipeline {
             sh "pip install -e ${WORKSPACE}/infr_apps"
           }
         }
-
-        // Temporarily clone lib_sw_pll until XCommon CMake support is added
-        //sh "git clone -b develop git@github.com:xmos/lib_sw_pll"
       }
     }  // Get sandbox
     stage('Library checks') {
