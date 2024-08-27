@@ -16,8 +16,8 @@ lib_adat: ADAT Lightpipe
 Summary
 *******
 
-The modules in this repo implement an ADAT transmitter and receiver in a
-core each. Separate cores are required to collect and supply data.
+Provides ADAT transmitter and receiver implementations, each in a separate thread. Additional
+threads are required to collect and supply data via a channel end interface.
 
 ********
 Features
@@ -31,9 +31,8 @@ Features
 Known Issues
 ************
 
-  * This software relies on the reference clock being 100 MHz, there is no out of the box version i
-    for non 100 Mhz reference clocks.
-  * ADAT Tx for 256x master clock (i.e. 48kHz from 12.288MHz master clock) not yet implemented
+  * ADAT Rx: Requirement for 100 MHz reference clock (#18)
+  * ADAT Tx: No support for 256x master clock (i.e. 48kHz from 12.288MHz master clock) (#17)
 
 **************
 Required Tools

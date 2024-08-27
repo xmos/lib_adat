@@ -4,7 +4,7 @@ getApproval()
 
 pipeline {
   agent {
-    label 'x86_64 && linux'
+    label 'documentation&&linux&&x86_64'
   }
   options {
     buildDiscarder(xmosDiscardBuildSettings())
@@ -46,6 +46,7 @@ pipeline {
         }
       }
     }  // Get sandbox
+
     stage('Library checks') {
       steps {
         withTools(params.TOOLS_VERSION) {
@@ -54,9 +55,7 @@ pipeline {
           dir("tools_released") {
             sh "echo ${params.TOOLS_VERSION} > REQUIRED_TOOLS_VERSION"
           }
-          withEnv(["REPO=${REPO}"]) {
-            xcoreLibraryChecks("${REPO}", false)
-          }
+          xcoreLibraryChecks("${REPO}", false)
         }
       }
     }  // Library checks
@@ -66,7 +65,7 @@ pipeline {
           dir("${REPO}/examples") {
             script {
               // Build all apps in the examples directory
-              sh "cmake  -B build -G\"Unix Makefiles\""
+              sh "cmake  -B build -G\"Unix Makefiles\" -DDEPS_CLONE_SHALLOW=TRUE"
               sh "xmake -C build"
             } // script
           } // dir
@@ -74,24 +73,22 @@ pipeline {
       } // steps
     }  // Build examples
 
+
     stage('Documentation') {
-      agent {
-        label 'docker'
-      }
       steps {
-        println "Stage running on ${env.NODE_NAME}"
-        sh "docker pull ghcr.io/xmos/xmosdoc:${params.XMOSDOC_VERSION}"
-        sh """docker run -u "\$(id -u):\$(id -g)" \
-              --rm \
-              -v ${WORKSPACE}:/build \
-              ghcr.io/xmos/xmosdoc:${params.XMOSDOC_VERSION} -v"""
-        archiveArtifacts artifacts: 'doc/_build/**', allowEmptyArchive: false
+        dir("${REPO}") {
+          withVenv {
+            sh "pip install git+ssh://git@github.com/xmos/xmosdoc@${XMOSDOC_VERSION}"
+            sh 'xmosdoc'
+            zip zipFile: "${REPO}_docs.zip", archive: true, dir: 'doc/_build'
+          } // withVenv
+        } // dir
       } // steps
     } // Documentation
   } // stages
   post {
     cleanup {
       xcoreCleanSandbox()
-    } // cleanuo
+    } // cleanup
   } // post
 } // pipeline

@@ -7,10 +7,10 @@ lib_adat: ADAT Lightpipe
 Introduction
 ************
 
-The ADAT Lightpipe, officially the ADAT Optical Interface, is a standard for the transfer of digita
+The ADAT Lightpipe, officially the ADAT Optical Interface, is a standard for the transfer of digital
 audio between equipment via optical cable.
 The data transmission rate is determined by the transmitter, and the receiver has to recover the
-sample rate. ADAT can carry eight channels of uncompressed digital adudio at sample-rates of 44.1 or
+sample rate. ADAT can carry eight channels of uncompressed digital audio at sample-rates of 44.1 or
 48 kHz.
 
 Important characteristics of ``lib_adat`` are the following:
