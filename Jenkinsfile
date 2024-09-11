@@ -80,7 +80,7 @@ pipeline {
       steps {
         dir("${REPO}") {
           withVenv {
-            sh "pip install git+ssh://git@github.com/xmos/xmosdoc@${XMOSDOC_VERSION}"
+            sh "pip install git+ssh://git@github.com/xmos/xmosdoc@${params.XMOSDOC_VERSION}"
             sh 'xmosdoc'
             zip zipFile: "${REPO}_docs.zip", archive: true, dir: 'doc/_build'
           } // withVenv
