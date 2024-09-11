@@ -1,4 +1,6 @@
-@Library('xmos_jenkins_shared_library@v0.30.0') _
+// This file relates to internal XMOS infrastructure and should be ignored by external users
+
+@Library('xmos_jenkins_shared_library@v0.33.0') _
 
 getApproval()
 
@@ -18,7 +20,7 @@ pipeline {
     )
     string(
       name: 'XMOSDOC_VERSION',
-      defaultValue: 'v5.5.2',
+      defaultValue: 'v6.0.0',
       description: 'The xmosdoc version'
     )
   }
@@ -33,7 +35,7 @@ pipeline {
         println "Stage running on: ${env.NODE_NAME}"
 
         sh "git clone -b v1.2.1 git@github.com:xmos/infr_scripts_py"
-        sh "git clone -b v1.5.0 git@github.com:xmos/infr_apps"
+        sh "git clone -b v2.0.0 git@github.com:xmos/infr_apps"
 
         dir("${REPO}") {
           checkout scm
@@ -59,6 +61,7 @@ pipeline {
         }
       }
     }  // Library checks
+
     stage('Build examples') {
       steps {
         withTools(params.TOOLS_VERSION) {
@@ -72,7 +75,6 @@ pipeline {
         } //withTools
       } // steps
     }  // Build examples
-
 
     stage('Documentation') {
       steps {

@@ -1,11 +1,11 @@
-lib_adat change log
-===================
+lib_adat Changelog
+==================
 
-UNRELEASED
-----------
+2.0.0
+-----
 
   * ADDED:     "adat.h" header file provided access to both transmit and receive API
-  * CHANGED:   Receive API now uses streaming chanend
+  * CHANGED:   Receive API now uses streaming chanend (breaking change)
   * CHANGED:   Documentation updates
   * CHANGED:   Examples now build using XCommon Cmake build system
 
