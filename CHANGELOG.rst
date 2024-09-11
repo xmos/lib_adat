@@ -5,6 +5,7 @@ UNRELEASED
 ----------
 
   * ADDED:     "adat.h" header file provided access to both transmit and receive API
+  * CHANGED:   Receive API now uses streaming chanend
   * CHANGED:   Documentation updates
   * CHANGED:   Examples now build using XCommon Cmake build system
 
