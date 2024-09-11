@@ -35,7 +35,7 @@ pipeline {
         println "Stage running on: ${env.NODE_NAME}"
 
         sh "git clone -b v1.2.1 git@github.com:xmos/infr_scripts_py"
-        sh "git clone -b v1.5.0 git@github.com:xmos/infr_apps"
+        sh "git clone -b v2.0.0 git@github.com:xmos/infr_apps"
 
         dir("${REPO}") {
           checkout scm
