@@ -5,7 +5,7 @@ lib_adat: ADAT Lightpipe
 ########################
 
 :vendor: XMOS
-:version: 1.2.0
+:version: 2.0.0
 :scope: General Use
 :description: ADAT Lightpipe digital audio interface
 :category: Audio
@@ -17,7 +17,8 @@ Summary
 *******
 
 Provides ADAT transmitter and receiver implementations, each in a separate thread. Additional
-threads are required to collect and supply data via a channel end interface.
+threads are required to collect and supply data via a channel end interface. These threads are
+required to deal with any sample ordering required for S/MUX.
 
 ********
 Features
@@ -32,7 +33,7 @@ Known Issues
 ************
 
   * ADAT Rx: Requirement for 100 MHz reference clock (#18)
-  * ADAT Tx: No support for 256x master clock (i.e. 48kHz from 12.288MHz master clock) (#17)
+  * ADAT Tx: No support for 256x master clock (i.e. 48 kHz from 12.288 MHz master clock) (#17)
 
 **************
 Required Tools
@@ -52,7 +53,7 @@ Related Application Notes
 
 The following application notes use this library:
 
-  * `AN02003: SPDIF/ADAT/I2S Receive to I2S Slave Bridge with ASRC <https://www.xmos.com/file/an02003>`_
+  * `AN02003: SPDIF/ADAT/I²S Receive to I²S Slave Bridge with ASRC <https://www.xmos.com/file/an02003>`_
 
 *******
 Support
