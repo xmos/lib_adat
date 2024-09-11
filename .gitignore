@@ -16,6 +16,7 @@ pca.xml
 *~
 *.swp
 *.swo
+*.DS_Store
 
 # Log files
 *.log
