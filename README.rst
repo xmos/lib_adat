@@ -21,6 +21,8 @@ threads are required to collect and supply data via a channel end interface. The
 required to deal with any sample ordering required for S/MUX.
 
 ********
+=======
+>>>>>>> 652c5b60f1b18267c3b74d945f574b70520cf55e
 Features
 ********
 
