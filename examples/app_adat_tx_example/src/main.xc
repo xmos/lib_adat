@@ -9,10 +9,12 @@ extern "C" {
     #include "sw_pll.h"
 }
 
+/* Port declarations */
 buffered out port:32 p_adat_tx = PORT_ADAT_OUT;
 in port p_mclk_in = PORT_MCLK_IN;
 out port p_ctrl = PORT_CTRL;
 on tile[1]: clock clk_audio = XS1_CLKBLK_2;
+//*
 
 #define MCLK_FREQUENCY_48  24576000
 
@@ -32,24 +34,34 @@ void board_setup(void)
     while (1) {}
 }
 
-void drive_port(chanend c_port) {
-    while (1) {
+/* Port driver */
+void drive_port(chanend c_port)
+{
+    while (1)
+    {
         p_adat_tx <: byterev(inuint(c_port));
     }
 }
+//:
 
-void transmit_adat(chanend c) {
+void transmit_adat(chanend c)
+{
     chan c_port;
 
+    /* Port and clock setup */
     set_clock_src(clk_audio, p_mclk_in);
     configure_out_port_no_ready(p_adat_tx, clk_audio, 0);
     set_clock_fall_delay(clk_audio, 7);
     start_clock(clk_audio);
+    //:
 
-    par {
+    /* Par port-driver and adat_rx() */
+    par
+    {
         adat_tx(c, c_port);
         drive_port(c_port);
     }
+    //:
 }
 
 #define SINE_TABLE_SIZE 100
@@ -77,6 +89,7 @@ const int sine_table[SINE_TABLE_SIZE] =
     0xfc06b500,0xfd017f00,0xfdff5000,0xfeff2600,0x00000000,
 };
 
+/* Data generation task */
 void generate_samples(chanend c) {
     int count1 = 0;
     int count2 = 0;
@@ -115,7 +128,9 @@ void generate_samples(chanend c) {
         }
     }
 }
+//:
 
+/* Top-level main */
 int main(void) {
 
     chan c;
@@ -127,3 +142,4 @@ int main(void) {
     }
     return 0;
 }
+//:

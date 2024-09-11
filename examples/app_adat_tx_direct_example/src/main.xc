@@ -8,10 +8,12 @@ extern "C" {
     #include "sw_pll.h"
 }
 
+/* Port declarations */
 buffered out port:32 p_adat_tx = PORT_ADAT_OUT;
 in port p_mclk_in = PORT_MCLK_IN;
 out port p_ctrl = PORT_CTRL;
 on tile[1]: clock clk_audio = XS1_CLKBLK_2;
+//:
 
 #define MCLK_FREQUENCY_48  24576000
 
@@ -58,6 +60,7 @@ const int sine_table[SINE_TABLE_SIZE] =
 
 unsigned samples[8];
 
+/* Data generation task */
 void generate_samples(chanend c) {
     int count1 = 0;
     int count2 = 0;
@@ -103,8 +106,11 @@ void generate_samples(chanend c) {
         }
     }
 }
+//:
 
-void transmit_adat(chanend c) {
+void transmit_adat(chanend c)
+{
+    /* Setup ports and clocks */
     set_clock_src(clk_audio, p_mclk_in);
     configure_out_port_no_ready(p_adat_tx, clk_audio, 0);
     set_clock_fall_delay(clk_audio, 7);
@@ -113,8 +119,9 @@ void transmit_adat(chanend c) {
     adat_tx_port(c, p_adat_tx);
 }
 
-int main(void) {
-
+/* Top-level main */
+int main(void)
+{
     chan c;
     par
     {
@@ -124,3 +131,4 @@ int main(void) {
     }
     return 0;
 }
+//:

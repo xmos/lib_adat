@@ -8,7 +8,7 @@
 #include <xs1.h>
 #include <stdio.h>
 #pragma unsafe arrays
-void adatReceiver48000(buffered in port:32 p, chanend oChan) {
+void adatReceiver48000(buffered in port:32 p, streaming chanend oChan) {
     const unsigned int mask = 0x80808080;
     unsigned compressed;
     unsigned nibble, word = 1, fourBits, data;
@@ -34,7 +34,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         compressed = lookupCrcF[fourBits];
         nibble = lookupNRTZ[(old | (compressed << 4)) & 31];
         old = compressed >> 1;
-        outuint(oChan, nibble << 4 | 1);
+        oChan <: nibble << 4 | 1;
         p :> word;
         fourBits = (word << 3) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -82,7 +82,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 2)) & 31];
         old = compressed >> 3;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 7) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -136,7 +136,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 3)) & 31];
         old = compressed >> 2;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 3) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -184,7 +184,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 1)) & 31];
         old = compressed >> 4;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 7) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -238,7 +238,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 2)) & 31];
         old = compressed >> 3;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 3) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -292,7 +292,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 4)) & 31];
         old = compressed >> 1;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 7) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -340,7 +340,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 1)) & 31];
         old = compressed >> 4;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 3) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -394,7 +394,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 2)) & 31];
         old = compressed >> 3;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 6) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -447,7 +447,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 4)) & 31];
         old = compressed >> 1;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         if (word != 0 && word+1 != 0) return;
     }
@@ -461,7 +461,7 @@ void adatReceiver48000(buffered in port:32 p, chanend oChan) {
 #include <xs1.h>
 #include <stdio.h>
 #pragma unsafe arrays
-void adatReceiver44100(buffered in port:32 p, chanend oChan) {
+void adatReceiver44100(buffered in port:32 p, streaming chanend oChan) {
     const unsigned int mask = 0x80402010;
     unsigned compressed;
     unsigned nibble, word = 1, fourBits, data;
@@ -488,7 +488,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         compressed = compressed >> 1;
         nibble = lookupNRTZ[(old | (compressed << 4)) & 31];
         old = compressed >> 1;
-        outuint(oChan, nibble << 4 | 1);
+        oChan <: nibble << 4 | 1;
         p :> word;
         fourBits = (word << 4) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -544,7 +544,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 3)) & 31];
         old = compressed >> 2;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 3) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -600,7 +600,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 2)) & 31];
         old = compressed >> 3;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 2) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -661,7 +661,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 4)) & 31];
         old = compressed >> 1;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 6) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -717,7 +717,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 3)) & 31];
         old = compressed >> 2;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 5) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -774,7 +774,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 2)) & 31];
         old = compressed >> 3;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 4) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -835,7 +835,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 4)) & 31];
         old = compressed >> 1;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 1) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -891,7 +891,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 3)) & 31];
         old = compressed >> 2;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         fourBits = (word << 0) & mask;
         crc32(fourBits, 0xf, 0xf);
@@ -947,7 +947,7 @@ void adatReceiver44100(buffered in port:32 p, chanend oChan) {
         nibble = lookupNRTZ[(old | (compressed << 2)) & 31];
         old = compressed >> 3;
         data = (data | nibble) << 4;
-        outuint(oChan, data);
+        oChan <: data;
         p :> word;
         if (word != 0 && word+1 != 0) return;
     }

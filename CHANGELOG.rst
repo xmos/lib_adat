@@ -1,11 +1,20 @@
 lib_adat change log
 ===================
 
+UNRELEASED
+----------
+
+  * ADDED:     "adat.h" header file provided access to both transmit and receive API
+  * CHANGED:   Receive API now uses streaming chanend
+  * CHANGED:   Documentation updates
+  * CHANGED:   Examples now build using XCommon Cmake build system
+
+
 1.2.0
 -----
 
-  * CHANGED: example applications now run on xcore.ai hardware
-  * CHANGED: example applications build using XCommon CMake
+  * CHANGED: Example applications now run on xcore.ai hardware
+  * CHANGED: Example applications build using XCommon CMake
 
 1.1.0
 -----
@@ -15,7 +24,7 @@ lib_adat change log
 1.0.1
 -----
 
-  * Removed duplicate header file
+  * REMOVED: Duplicate header file
 
 1.0.0
 -----
