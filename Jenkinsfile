@@ -34,33 +34,12 @@ pipeline {
       steps {
         println "Stage running on: ${env.NODE_NAME}"
 
-        sh "git clone -b v1.2.1 git@github.com:xmos/infr_scripts_py"
-        sh "git clone -b v2.0.0 git@github.com:xmos/infr_apps"
-
         dir("${REPO}") {
           checkout scm
-
           createVenv()
-          withVenv {
-            sh "pip install -e ${WORKSPACE}/infr_scripts_py"
-            sh "pip install -e ${WORKSPACE}/infr_apps"
-          }
         }
       }
     }  // Get sandbox
-
-    stage('Library checks') {
-      steps {
-        withTools(params.TOOLS_VERSION) {
-          // creation of tools_released and REPO environment variable are workarounds
-          // to allow xcoreLibraryChecks to run without a viewfile-based sandbox
-          dir("tools_released") {
-            sh "echo ${params.TOOLS_VERSION} > REQUIRED_TOOLS_VERSION"
-          }
-          xcoreLibraryChecks("${REPO}", false)
-        }
-      }
-    }  // Library checks
 
     stage('Build examples') {
       steps {
@@ -75,6 +54,12 @@ pipeline {
         } //withTools
       } // steps
     }  // Build examples
+
+    stage('Library checks') {
+      steps {
+        runLibraryChecks("${WORKSPACE}/${REPO}", "v2.0.1")
+      } // steps
+    }  // Library checks
 
     stage('Documentation') {
       steps {
