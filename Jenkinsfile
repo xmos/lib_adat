@@ -1,6 +1,6 @@
 // This file relates to internal XMOS infrastructure and should be ignored by external users
 
-@Library('xmos_jenkins_shared_library@v0.33.0') _
+@Library('xmos_jenkins_shared_library@v0.34.0') _
 
 getApproval()
 
@@ -20,7 +20,7 @@ pipeline {
     )
     string(
       name: 'XMOSDOC_VERSION',
-      defaultValue: 'v6.0.0',
+      defaultValue: 'v6.1.0',
       description: 'The xmosdoc version'
     )
   }
@@ -79,14 +79,10 @@ pipeline {
     stage('Documentation') {
       steps {
         dir("${REPO}") {
-          withVenv {
-            sh "pip install git+ssh://git@github.com/xmos/xmosdoc@${params.XMOSDOC_VERSION}"
-            sh 'xmosdoc'
-            zip zipFile: "${REPO}_docs.zip", archive: true, dir: 'doc/_build'
-          } // withVenv
-        } // dir
+          buildDocs()
+        } // dir("${REPO}")
       } // steps
-    } // Documentation
+    } // stage('Documentation')
   } // stages
   post {
     cleanup {
