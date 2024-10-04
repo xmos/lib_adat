@@ -1,14 +1,19 @@
-lib_adat Changelog
-==================
+lib_adat change log
+===================
+
+UNRELEASED
+----------
+
+  * CHANGED: Run standard library tests as part of Jenkins testing
 
 2.0.0
 -----
 
-  * ADDED:     "adat.h" header file provided access to both transmit and receive API
+  * ADDED:     "adat.h" header file provided access to both transmit and receive
+    API
   * CHANGED:   Receive API now uses streaming chanend (breaking change)
   * CHANGED:   Documentation updates
   * CHANGED:   Examples now build using XCommon Cmake build system
-
 
 1.2.0
 -----
