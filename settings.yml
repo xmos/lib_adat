@@ -3,7 +3,7 @@
 lib_name: lib_adat
 project: '{{lib_name}}'
 title: '{{lib_name}}: ADAT Lightpipe'
-version: 2.0.0
+version: 2.0.1
 
 documentation:
   exclude_patterns_path: doc/exclude_patterns.inc

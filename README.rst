@@ -5,7 +5,7 @@ lib_adat: ADAT Lightpipe
 ########################
 
 :vendor: XMOS
-:version: 2.0.0
+:version: 2.0.1
 :scope: General Use
 :description: ADAT Lightpipe digital audio interface
 :category: Audio
