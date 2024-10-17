@@ -1,6 +1,6 @@
 
 ########################
-lib_adat: ADAT Lightpipe
+lib_adat: ADAT lightpipe
 ########################
 
 ************
@@ -79,7 +79,7 @@ A single 62.5-MIPS core is required. The receiver does not require any
 external clock, but can only recover 44.1 and 48 KHz sample rates.
 
 ************
-ADAT Receive
+ADAT receive
 ************
 
 The ADAT receiver comprises a single thread that parses data as it
@@ -98,7 +98,7 @@ succession from a ``while(1)`` loop (recommended).
 Receive API
 ===========
 
-Compile Time Defines
+Compile time defines
 --------------------
 
 *ADAT_REF*
@@ -114,7 +114,7 @@ Functions
 .. doxygengroup:: lib_adat_rx
    :content-only:
 
-Receive Example
+Receive example
 ===============
 
 A simple receive program is provided in ``examples/app_adat_rx_example``. This application simply
@@ -149,7 +149,7 @@ parallel in two threads:
   :end-before: //::
 
 *************
-ADAT Transmit
+ADAT transmit
 *************
 
 There are two functions in the API that can produce an ADAT signal. The simplest
@@ -191,7 +191,7 @@ Functions
 .. doxygengroup:: lib_adat_tx
    :content-only:
 
-Transmit Example
+Transmit example
 ================
 
 Example applications are provided for both the 'direct port' and 'remote port' API variants. These
@@ -199,7 +199,7 @@ are ``app_adat_tx_direct_example`` and ``app_adat_tx_example`` respectively.
 
 Both examples transmit sine waves on all channels and are described in this section.
 
-Direct Port Example
+Direct port example
 -------------------
 
 The output port is declared as a 32-bit buffered port, and the master clock input must be
@@ -236,7 +236,7 @@ the `xcore.ai` application PLL to generate a suitable master-clock.
   :start-after: /* Top-level main
   :end-before: //:
 
-Remote Port Example
+Remote port example
 -------------------
 
 Much of the remote port example matches the direct port example.
@@ -288,7 +288,7 @@ should be set up:
   :end-before: //:
 
 *******************
-Additional Examples
+Additional examples
 *******************
 
 An additional example, ``app_adat_loopback``, is also provided. This expects a cable to be connected
