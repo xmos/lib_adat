@@ -2,7 +2,7 @@
 
 lib_name: lib_adat
 project: '{{lib_name}}'
-title: '{{lib_name}}: ADAT Lightpipe'
+title: '{{lib_name}}: ADAT lightpipe'
 version: 2.0.1
 
 documentation:

@@ -1,7 +1,7 @@
 :orphan:
 
 ########################
-lib_adat: ADAT Lightpipe
+lib_adat: ADAT lightpipe
 ########################
 
 :vendor: XMOS
@@ -29,26 +29,32 @@ Features
   * Application for loopback testing on Simulator or hardware
 
 ************
-Known Issues
+Known issues
 ************
 
   * ADAT Rx: Requirement for 100 MHz reference clock (#18)
   * ADAT Tx: No support for 256x master clock (i.e. 48 kHz from 12.288 MHz master clock) (#17)
 
+****************
+Development repo
+****************
+
+  * `lib_adat <https://www.github.com/xmos/lib_adat>`_
+
 **************
-Required Tools
+Required tools
 **************
 
   * XMOS XTC Tools: 15.3.0
 
 *********************************
-Required Libraries (dependencies)
+Required libraries (dependencies)
 *********************************
 
   * None
 
 *************************
-Related Application Notes
+Related application notes
 *************************
 
 The following application notes use this library:

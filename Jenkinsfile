@@ -23,6 +23,11 @@ pipeline {
       defaultValue: 'v6.1.2',
       description: 'The xmosdoc version'
     )
+    string(
+        name: 'INFR_APPS_VERSION',
+        defaultValue: 'v2.0.1',
+        description: 'The infr_apps version'
+    )
   }
   environment {
     REPO = 'lib_adat'
@@ -30,7 +35,7 @@ pipeline {
     PYTHON_VERSION = "3.12.1"
   }
   stages {
-    stage('Get sandbox') {
+    stage('Checkout') {
       steps {
         println "Stage running on: ${env.NODE_NAME}"
 
@@ -56,18 +61,20 @@ pipeline {
     }  // Build examples
 
     stage('Library checks') {
-      steps {
-        runLibraryChecks("${WORKSPACE}/${REPO}", "v2.0.1")
-      } // steps
-    }  // Library checks
+        steps {
+            runLibraryChecks("${WORKSPACE}/${REPO}", "${params.INFR_APPS_VERSION}")
+        }
+    }
 
     stage('Documentation') {
-      steps {
-        dir("${REPO}") {
-          buildDocs()
-        } // dir("${REPO}")
-      } // steps
-    } // stage('Documentation')
+        steps {
+            dir("${REPO}") {
+                warnError("Docs") {
+                    buildDocs()
+                }
+            }
+        }
+    }
   } // stages
   post {
     cleanup {

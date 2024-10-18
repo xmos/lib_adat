@@ -4,7 +4,7 @@ lib_adat change log
 2.0.1
 -----
 
-  * CHANGED: Run standard library tests as part of Jenkins testing
+  * CHANGED:   Documentation updated
 
 2.0.0
 -----
