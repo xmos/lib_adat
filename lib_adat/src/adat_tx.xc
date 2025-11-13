@@ -1,4 +1,4 @@
-// Copyright 2011-2024 XMOS LIMITED.
+// Copyright 2011-2025 XMOS LIMITED.
 // This Software is subject to the terms of the XMOS Public Licence: Version 1.
 // history:
 // 08 Jun 2010   forked from swc_usb/module_usb_audio_shared/src/adat_tx.xc tag ADAT_FORK
@@ -186,6 +186,11 @@ void adat_transmit_until_ct_2x(chanend c_data, chanend c_port, int smux)
 #pragma unsafe arrays
 void adat_transmit_until_ct_1x(chanend c_data, chanend c_port, int smux)
 {
+  unsafe {
+    (void)(unsigned) c_data;
+    (void)(unsigned) c_port;
+  }
+  (void) smux;
   // TODO
 }
 

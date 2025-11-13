@@ -1,6 +1,11 @@
 lib_adat change log
 ===================
 
+UNRELEASED
+----------
+
+  * CHANGED: Fixed compiler warnings (when -Wextra used)
+
 2.0.1
 -----
 
