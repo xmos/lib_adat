@@ -1,7 +1,18 @@
 set(LIB_NAME lib_adat)
+
 set(LIB_VERSION 2.0.1)
+
 set(LIB_INCLUDES api)
+
 set(LIB_DEPENDENT_MODULES "")
-set(LIB_COMPILER_FLAGS -O3)
+
+set(LIB_COMPILER_FLAGS  -O3
+                        -Wall
+                        -Wextra
+                        -Wshadow
+                        -Wconversion
+                        -Wdiv-by-zero
+                        -Wfloat-equal
+                        -Wsign-compare)
 
 XMOS_REGISTER_MODULE()

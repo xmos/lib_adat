@@ -1,84 +1,105 @@
 // This file relates to internal XMOS infrastructure and should be ignored by external users
 
-@Library('xmos_jenkins_shared_library@v0.34.0') _
+@Library('xmos_jenkins_shared_library@v0.43.3') _
 
 getApproval()
 
 pipeline {
-  agent {
-    label 'documentation&&linux&&x86_64'
-  }
+
+  agent none
+
   options {
+    timestamps()
     buildDiscarder(xmosDiscardBuildSettings())
     skipDefaultCheckout()
   }
   parameters {
     string(
       name: 'TOOLS_VERSION',
-      defaultValue: '15.3.0',
+      defaultValue: '15.3.1',
       description: 'The XTC tools version'
     )
     string(
       name: 'XMOSDOC_VERSION',
-      defaultValue: 'v6.1.3',
+      defaultValue: 'v8.0.0',
       description: 'The xmosdoc version'
     )
     string(
         name: 'INFR_APPS_VERSION',
-        defaultValue: 'v2.0.1',
+        defaultValue: 'v3.2.0',
         description: 'The infr_apps version'
     )
   }
-  environment {
-    REPO = 'lib_adat'
-    PIP_VERSION = "24.0"
-    PYTHON_VERSION = "3.12.1"
-  }
+
   stages {
-    stage('Checkout') {
-      steps {
-        println "Stage running on: ${env.NODE_NAME}"
-
-        dir("${REPO}") {
-          checkout scm
-          createVenv()
-        }
+    stage('🏗️ Build and test') {
+      agent {
+        label 'x86_64 && linux && documentation'
       }
-    }  // Get sandbox
 
-    stage('Build examples') {
-      steps {
-        withTools(params.TOOLS_VERSION) {
-          dir("${REPO}/examples") {
+      stages {
+        stage('Checkout') {
+          steps {
+            println "Stage running on: ${env.NODE_NAME}"
+
             script {
-              // Build all apps in the examples directory
-              sh "cmake  -B build -G\"Unix Makefiles\" -DDEPS_CLONE_SHALLOW=TRUE"
-              sh "xmake -C build"
-            } // script
-          } // dir
-        } //withTools
-      } // steps
-    }  // Build examples
-
-    stage('Library checks') {
-        steps {
-            runLibraryChecks("${WORKSPACE}/${REPO}", "${params.INFR_APPS_VERSION}")
-        }
-    }
-
-    stage('Documentation') {
-        steps {
-            dir("${REPO}") {
-                warnError("Docs") {
-                    buildDocs()
-                }
+              def (server, user, repo) = extractFromScmUrl()
+              env.REPO_NAME = repo
             }
+
+            dir(REPO_NAME){
+              checkoutScmShallow()
+            }
+          }
+        }  // Checkout
+
+
+        stage('Examples build') {
+          steps {
+            dir("${REPO_NAME}/examples") {
+              xcoreBuild()
+            }
+          }
         }
+
+        stage('Library checks') {
+          steps {
+            warnError("Repo checks failed") {
+              runRepoChecks("${WORKSPACE}/${REPO_NAME}")
+            }
+          }
+        }
+
+        stage('Documentation') {
+          steps {
+            dir(REPO_NAME) {
+              buildDocs()
+            }
+          }
+        }
+        
+        stage("Archive sandbox") {
+          steps {
+            archiveSandbox(REPO_NAME)
+          }
+        }
+      } // stages
+
+      post {
+        cleanup {
+          xcoreCleanSandbox()
+        } // cleanup
+      } // post
+      
+    } // stage 'Build and test'
+    
+    stage('🚀 Release') {
+      when {
+        expression { triggerRelease.isReleasable() }
+      }
+      steps {
+        triggerRelease()
+      }
     }
-  } // stages
-  post {
-    cleanup {
-      xcoreCleanSandbox()
-    } // cleanup
-  } // post
+  }
 } // pipeline

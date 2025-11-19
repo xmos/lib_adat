@@ -9,7 +9,7 @@ lib_adat: ADAT lightpipe
 :scope: General Use
 :description: ADAT Lightpipe digital audio interface
 :category: Audio
-:keywords: ADAT
+:keywords:
 :devices: xcore.ai, xcore-200
 
 *******
